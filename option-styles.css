@@ -1,0 +1,19 @@
+#button-div {
+  display: flex;
+  flex-direction: column;
+  font-style: Times;
+  color: #484848;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h2 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+  color: #484848;
+  font-weight: bold;
+  margin-left: 1em;
+}
+
+input {
+  margin-top: 1em;
+}
