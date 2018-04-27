@@ -30,6 +30,7 @@ function displayOnPage(estimatedReadTime, wordCount) {
   const estimateHeading = document.createElement('h3');
   const wordCountHeading = document.createElement('h3');
 
+  containerDiv.setAttribute('id', 'container-div');
   containerDiv.setAttribute('style', 'position: fixed; top: 80%; right: 1.5%; padding: 20px; border-radius: 15px; box-shadow: 0 0 10px rgba(0, 0, 0, .5); z-index: 10000; background-color: white;');
   estimateDiv.setAttribute('style', divStyles);
   wordCountDiv.setAttribute('style', divStyles);
@@ -68,5 +69,16 @@ chrome.storage.sync.get(['onWebPage'], webPage => {
   if (webPage.onWebPage) {
     const values = getEstimateInfo();
     displayOnPage(values[0], values[1]);
+  }
+});
+
+window.addEventListener("scroll", function() {
+  const element = document.getElementById('container-div');
+  let scrollAmt = window.pageYOffset || document.documentElement.scrollTop
+  
+	if (scrollAmt >= 1000) {
+    element.setAttribute('style', 'position: fixed; top: 80%; right: 1.5%; padding: 20px; border-radius: 15px; box-shadow: 0 0 10px rgba(0, 0, 0, .5); z-index: 10000; background-color: white; opacity: 0; -webkit-transition: opacity .5s linear;');
+  } else if (scrollAmt < 1000) {
+    element.setAttribute('style', 'position: fixed; top: 80%; right: 1.5%; padding: 20px; border-radius: 15px; box-shadow: 0 0 10px rgba(0, 0, 0, .5); z-index: 10000; background-color: white; opacity: 1; transition: opacity .5s linear;');
   }
 });
